@@ -1,4 +1,4 @@
-<!-- table+margin:auto方式来实现居中布局 -->
+<!-- （一）table+margin:auto方式来实现居中布局 -->
 <!-- <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +70,7 @@
 
 
 
-<!-- table-cell+vertical-align方式来实现垂直居中布局 -->
+<!-- （二）table-cell+vertical-align方式来实现垂直居中布局 -->
 
 <!-- <!DOCTYPE html>
 <html>
@@ -149,3 +149,94 @@
 	</div>
 </body>
 </html> -->
+
+
+
+<!-- （三）综合水平居中和垂直居中inline-block/text-align||table-cell+vertical-align
+方式来实现水平垂直居中布局 -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>垂直居中布局</title>
+	<style type="text/css">
+	    body{padding:0;}
+		.parent{
+			width:400px;height:300px;
+			text-align: center;
+			display: table-cell;
+			vertical-align: middle;
+			background-color:#ccc;
+		}
+		.child{display:inline-block;
+			background-color:#aaa;}
+	</style>
+</head>
+<body>
+	<div class="parent" id="parent">
+		<div class="child" id="child">DEMO-BY-WANGDEMO-BY-WANG</div>
+	</div>
+</body>
+</html>
+
+ -->
+
+
+<!-- absolute + transform方式来实现水平垂直居中布局，
+优点: 只需要改动子元素
+缺点：兼容不好 -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>垂直居中布局</title>
+	<style type="text/css">
+	    body{padding:0;}
+		.parent{position:relative;height:500px;background-color:#ddd;}
+		/*absolute块宽度由内容决定*/
+		.child{position:absolute;
+			/*移动和变化的是父元素参照的位置*/
+			top:50%;
+			left:50%;
+			/*transform-translate移动和变化的是本身的位置*/
+			transform: translateY(-50%);
+			transform: translateX(-50%);
+			background-color:#aaa;}
+	</style>
+</head>
+<body>
+	<div class="parent" id="parent">
+		<div class="child" id="child">DEMO-BY-WANG<br>DEMO-BY-WANG</div>
+	</div>
+</body>
+</html>
+ -->
+
+
+<!-- flex/justify-content||flex/align-items垂直水平居中布局 >
+只需要设置父元素，不需要设置子元素 
+缺点是适合高版本兼容性差-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>垂直居中布局</title>
+	<style type="text/css">
+	    body{padding:0;}
+		.parent{display:flex;
+			justify-content:center;
+			align-items:center;
+
+			height:400px;
+			background-color:#ddd;}
+		.child{
+			background-color:#aaa;}
+	</style>
+</head>
+<body>
+	<div class="parent" id="parent">
+		<div class="child" id="child">DEMO-BY-WANG||DEMO-BY-WANG</div>
+	</div>
+</body>
+</html>
