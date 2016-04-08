@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>event-click-test</title>
+	<style type="text/css">
+		.parent{height:120px;background-color:#ccc;position:relative;}
+		.child{position:absolute;top:0px;left:0px;display:table;margin:0 auto;height:120px;background-color:#aaa;}
+		.parent p{top:0px;left:0px;padding:20px}
+		.parent p:hover{background-color:#999;}
+		#mylist{background-color: #cba}
+		#mylist li{margin-top:10px;background-color: #abc}
+	</style>
+</head>
+<body>
+	<div class="parent" id="parent">
+		<div class="child" id="child"><p>DEMO-BY-WANG</p></div>
+	</div>
+	<button id="btn">你好1</button>
+	<button id="btn2">你好2</button>
+	<ul id="mylist">
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>	
+	</ul>
+
+	<script type="text/javascript">
+	//click事件注册+触发
+		//点击按钮触发
+		var mybtn = document.getElementById('btn');
+		var Handler = function(event){
+			alert('you have clicked the 1st button');
+		}
+		mybtn.addEventListener('click',Handler,false);
+    //点击按钮触发
+		var mybtn2 = document.getElementById('btn2');
+		var childHandler = function(event){
+			alert('You have clicked the 2nd button!');
+		}
+		mybtn2.addEventListener('click',childHandler,false);
+		//点击div块触发
+		var myzone = document.getElementById('child');
+		var zoneHandler = function(event){
+			alert('You have clicked the div zone!');
+		}
+		myzone.addEventListener('click',zoneHandler,false);
+		//点击list块触发
+		var list = document.getElementById('parent');
+		var mylistHandler = function(event){
+			var newClientX = event.clientX;
+			var newClientY = event.clientY;
+			var movediv = document.getElementById('child');
+			//alert("xy!");
+			alert('You have clicked the list and it will move to : left->'+newClientX+', right->'+ newClientY);
+			movediv.style.top =(-Math.round((movediv.style.width)/2))+newClientY+"px";
+			movediv.style.left =(-Math.round((movediv.style.height)/2))+newClientX+"px";
+			movediv.style.innerHTML="red";
+			//尝试做一个随位置变化的颜色块，尝试失败,不知原因为何。
+			// movediv.style.(background-color)="#"+ String(parseInt((Math.random()*10).toFixed(0)*100)+parseInt((Math.random()*10).toFixed(0)*10)+parseInt((Math.random()*10).toFixed(0)));
+			// 输出块颜色，失败
+			// alert(movediv.style.background-color);
+		}
+		//list.addEventListener('click',mylistHandler,false);
+		//注册给全局window对象，会在整个窗口起作用
+		window.addEventListener('click',mylistHandler,false);
+	</script>
+</body>
+</html>
